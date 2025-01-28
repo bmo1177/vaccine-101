@@ -3,7 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
-import { Calendar, Clock, Users, Activity, Baby, Plus, Syringe } from "lucide-react";
+import { Calendar, Baby, Plus, Syringe } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 const Dashboard = () => {
@@ -42,11 +42,6 @@ const Dashboard = () => {
       icon: <Baby className="h-6 w-6 text-primary" />,
     },
     {
-      title: "Reminders",
-      value: "2",
-      icon: <Clock className="h-6 w-6 text-primary" />,
-    },
-    {
       title: "Total Vaccinations",
       value: "12",
       icon: <Syringe className="h-6 w-6 text-primary" />,
@@ -80,7 +75,7 @@ const Dashboard = () => {
             </Button>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
             {stats.map((stat, index) => (
               <motion.div
                 key={stat.title}
