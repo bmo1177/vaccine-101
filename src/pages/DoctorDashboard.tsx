@@ -1,11 +1,11 @@
 import { motion } from "framer-motion";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { useNavigate } from "react-router-dom";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Plus, Users, MessageSquare, Syringe, UserPlus } from "lucide-react";
-import { Input } from "@/components/ui/input";
 import { useState } from "react";
 
 const DoctorDashboard = () => {

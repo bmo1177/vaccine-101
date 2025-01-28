@@ -9,6 +9,9 @@ import Index from "./pages/Index";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Dashboard from "./pages/Dashboard";
+import DoctorDashboard from "./pages/DoctorDashboard";
+import AddChildToParent from "./pages/AddChildToParent";
+import NewRequest from "./pages/NewRequest";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -26,6 +29,9 @@ const App = () => (
               <Route path="/login" element={<Login />} />
               <Route path="/signup" element={<Signup />} />
               <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/doctor/dashboard" element={<DoctorDashboard />} />
+              <Route path="/doctor/add-child" element={<AddChildToParent />} />
+              <Route path="/doctor/requests/new" element={<NewRequest />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </AnimatePresence>
