@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { Navigation } from "@/components/shared/Navigation";
 
 const Index = () => {
   const navigate = useNavigate();
@@ -91,40 +92,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <nav className="fixed w-full bg-background/80 backdrop-blur-md z-50 border-b">
-        <div className="container mx-auto px-6 py-4">
-          <div className="flex items-center justify-between">
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5 }}
-              className="text-xl font-semibold text-primary"
-            >
-              VaxTrack
-            </motion.div>
-            <div className="flex items-center space-x-4">
-              <ThemeToggle />
-              <motion.button
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                onClick={() => navigate("/login")}
-                className="px-4 py-2 text-primary hover:text-primary-hover transition-colors"
-              >
-                Login
-              </motion.button>
-              <motion.button
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                onClick={() => navigate("/signup")}
-                className="px-4 py-2 bg-primary text-primary-foreground rounded-md hover:bg-primary-hover transition-colors"
-              >
-                Get Started
-              </motion.button>
-            </div>
-          </div>
-        </div>
-      </nav>
-
+      <Navigation />
       <main className="container mx-auto px-6 pt-32 pb-16">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

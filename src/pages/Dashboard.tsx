@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import { Calendar, Baby, Plus, Syringe } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Navigation } from "@/components/shared/Navigation";
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -50,18 +51,7 @@ const Dashboard = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <nav className="border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-        <div className="container flex h-16 items-center justify-between">
-          <span className="text-2xl font-bold text-primary">VaxTrack</span>
-          <div className="flex items-center gap-4">
-            <ThemeToggle />
-            <Button variant="outline" onClick={() => navigate("/login")}>
-              Logout
-            </Button>
-          </div>
-        </div>
-      </nav>
-
+      <Navigation role="parent" />
       <main className="container py-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
