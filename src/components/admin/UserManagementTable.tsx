@@ -52,6 +52,7 @@ export const UserManagementTable = () => {
     const user: User = {
       id: users.length + 1,
       ...newUser,
+      status: "active", // Set default status to active for new users
     };
     setUsers([...users, user]);
     toast.success("User added successfully");
