@@ -28,6 +28,21 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import { Navigation } from "@/components/shared/Navigation";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
 
 const mockChartData = [
   { name: "Jan", users: 400, doctors: 240, requests: 140 },
@@ -36,6 +51,16 @@ const mockChartData = [
   { name: "Apr", users: 278, doctors: 390, requests: 200 },
   { name: "May", users: 189, doctors: 480, requests: 218 },
   { name: "Jun", users: 239, doctors: 380, requests: 250 },
+];
+
+const mockDoctors = [
+  { id: 1, name: "Dr. Sarah Smith", specialty: "Pediatrics", status: "active", patients: 45 },
+  { id: 2, name: "Dr. John Doe", specialty: "Family Medicine", status: "active", patients: 32 },
+];
+
+const mockRequests = [
+  { id: 1, title: "New Doctor Registration", from: "Dr. Jane Smith", priority: "high", status: "pending" },
+  { id: 2, title: "Article Review", from: "Dr. Mike Johnson", priority: "medium", status: "approved" },
 ];
 
 const AdminDashboard = () => {

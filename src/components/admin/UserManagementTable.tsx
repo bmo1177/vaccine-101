@@ -42,11 +42,10 @@ const mockUsers: User[] = [
 export const UserManagementTable = () => {
   const [users, setUsers] = useState<User[]>(mockUsers);
   const [searchTerm, setSearchTerm] = useState("");
-  const [newUser, setNewUser] = useState({
+  const [newUser, setNewUser] = useState<Omit<User, "id" | "status">>({
     name: "",
     email: "",
-    role: "parent" as const,
-    status: "active" as const,
+    role: "parent",
   });
 
   const handleAddUser = () => {
