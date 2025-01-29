@@ -2,7 +2,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 import { ThemeProvider } from "@/components/theme-provider";
 import Index from "./pages/Index";
@@ -27,15 +27,33 @@ const App = () => (
           <Sonner />
           <AnimatePresence mode="wait">
             <Routes>
+              {/* Public Routes */}
               <Route path="/" element={<Index />} />
               <Route path="/login" element={<Login />} />
               <Route path="/signup" element={<Signup />} />
-              <Route path="/dashboard" element={<Dashboard />} />
-              <Route path="/doctor/dashboard" element={<DoctorDashboard />} />
-              <Route path="/doctor/add-child" element={<AddChildToParent />} />
-              <Route path="/doctor/requests/new" element={<NewRequest />} />
-              <Route path="/admin/dashboard" element={<AdminDashboard />} />
               <Route path="/articles" element={<Articles />} />
+
+              {/* Parent Routes */}
+              <Route path="/parent">
+                <Route index element={<Navigate to="/parent/dashboard" replace />} />
+                <Route path="dashboard" element={<Dashboard />} />
+              </Route>
+
+              {/* Doctor Routes */}
+              <Route path="/doctor">
+                <Route index element={<Navigate to="/doctor/dashboard" replace />} />
+                <Route path="dashboard" element={<DoctorDashboard />} />
+                <Route path="add-child" element={<AddChildToParent />} />
+                <Route path="requests/new" element={<NewRequest />} />
+              </Route>
+
+              {/* Admin Routes */}
+              <Route path="/admin">
+                <Route index element={<Navigate to="/admin/dashboard" replace />} />
+                <Route path="dashboard" element={<AdminDashboard />} />
+              </Route>
+
+              {/* Catch-all route for 404 */}
               <Route path="*" element={<NotFound />} />
             </Routes>
           </AnimatePresence>

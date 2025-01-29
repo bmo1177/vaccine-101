@@ -43,10 +43,10 @@ export const Navigation = ({ role }: NavigationProps) => {
         ];
       case "parent":
         return [
-          { label: "Dashboard", icon: <Home className="h-4 w-4" />, path: "/dashboard" },
-          { label: "Children", icon: <Baby className="h-4 w-4" />, path: "/children" },
+          { label: "Dashboard", icon: <Home className="h-4 w-4" />, path: "/parent/dashboard" },
+          { label: "Children", icon: <Baby className="h-4 w-4" />, path: "/parent/children" },
           { label: "Articles", icon: <FileText className="h-4 w-4" />, path: "/articles" },
-          { label: "Vaccinations", icon: <Syringe className="h-4 w-4" />, path: "/vaccinations" },
+          { label: "Vaccinations", icon: <Syringe className="h-4 w-4" />, path: "/parent/vaccinations" },
         ];
       default:
         return [
@@ -60,7 +60,12 @@ export const Navigation = ({ role }: NavigationProps) => {
     <nav className="border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center justify-between">
         <div className="flex items-center gap-6">
-          <span className="text-2xl font-bold text-primary">VaxTrack</span>
+          <span 
+            className="text-2xl font-bold text-primary cursor-pointer" 
+            onClick={() => navigate("/")}
+          >
+            VaxTrack
+          </span>
           <div className="hidden md:flex items-center gap-4">
             {getNavItems().map((item) => (
               <Button

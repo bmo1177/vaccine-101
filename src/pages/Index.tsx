@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
-import { ThemeToggle } from "@/components/theme-toggle";
 import { Navigation } from "@/components/shared/Navigation";
+import { Button } from "@/components/ui/button";
 
 const Index = () => {
   const navigate = useNavigate();
@@ -69,29 +69,8 @@ const Index = () => {
     },
   ];
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2
-      }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.5
-      }
-    }
-  };
-
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="min-h-screen bg-background">
       <Navigation />
       <main className="container mx-auto px-6 pt-32 pb-16">
         <motion.div
@@ -107,34 +86,42 @@ const Index = () => {
             Keep your family's immunization records organized, up-to-date, and accessible
             anytime, anywhere.
           </p>
-          <motion.button
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-            onClick={() => navigate("/signup")}
-            className="px-8 py-3 bg-primary text-primary-foreground rounded-md hover:bg-primary-hover transition-colors text-lg"
-          >
-            Start Tracking Now
-          </motion.button>
+          <div className="flex gap-4 justify-center">
+            <Button
+              size="lg"
+              onClick={() => navigate("/signup")}
+              className="bg-primary text-primary-foreground hover:bg-primary-hover"
+            >
+              Get Started
+            </Button>
+            <Button
+              size="lg"
+              variant="outline"
+              onClick={() => navigate("/login")}
+            >
+              Sign In
+            </Button>
+          </div>
         </motion.div>
 
         <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.3 }}
           className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-20"
         >
           {features.map((feature, index) => (
             <motion.div
               key={feature.title}
-              variants={itemVariants}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 * (index + 1) }}
               className="bg-card p-6 rounded-lg shadow-sm border hover:shadow-md transition-shadow"
             >
               <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center text-primary mb-4">
                 {feature.icon}
               </div>
-              <h3 className="text-xl font-semibold mb-2">
-                {feature.title}
-              </h3>
+              <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
               <p className="text-muted-foreground">{feature.description}</p>
             </motion.div>
           ))}
