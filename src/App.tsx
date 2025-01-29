@@ -13,6 +13,7 @@ import DoctorDashboard from "./pages/DoctorDashboard";
 import AddChildToParent from "./pages/AddChildToParent";
 import NewRequest from "./pages/NewRequest";
 import AdminDashboard from "./pages/AdminDashboard";
+import Articles from "./pages/Articles";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -34,6 +35,7 @@ const App = () => (
               <Route path="/doctor/add-child" element={<AddChildToParent />} />
               <Route path="/doctor/requests/new" element={<NewRequest />} />
               <Route path="/admin/dashboard" element={<AdminDashboard />} />
+              <Route path="/articles" element={<Articles />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </AnimatePresence>

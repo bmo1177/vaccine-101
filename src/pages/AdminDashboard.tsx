@@ -5,21 +5,6 @@ import { Input } from "@/components/ui/input";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { useNavigate } from "react-router-dom";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
 import { toast } from "sonner";
 import {
@@ -27,12 +12,12 @@ import {
   UserPlus,
   Database,
   Settings,
-  ChartBar,
   Calendar,
   Search,
   Download,
 } from "lucide-react";
 import { useState } from "react";
+import { UserManagementTable } from "@/components/admin/UserManagementTable";
 import {
   Area,
   AreaChart,
@@ -50,18 +35,6 @@ const mockChartData = [
   { name: "Apr", users: 278, doctors: 390, requests: 200 },
   { name: "May", users: 189, doctors: 480, requests: 218 },
   { name: "Jun", users: 239, doctors: 380, requests: 250 },
-];
-
-const mockDoctors = [
-  { id: 1, name: "Dr. Sarah Johnson", specialty: "Pediatrician", status: "active", patients: 145 },
-  { id: 2, name: "Dr. Michael Chen", specialty: "Family Medicine", status: "active", patients: 98 },
-  { id: 3, name: "Dr. Emily Williams", specialty: "Pediatrician", status: "pending", patients: 0 },
-];
-
-const mockRequests = [
-  { id: 1, title: "New Vaccine Schedule", priority: "high", status: "pending", from: "Dr. Sarah Johnson" },
-  { id: 2, title: "System Update Request", priority: "medium", status: "approved", from: "Dr. Michael Chen" },
-  { id: 3, title: "Patient Data Access", priority: "low", status: "rejected", from: "Dr. Emily Williams" },
 ];
 
 const AdminDashboard = () => {
@@ -206,8 +179,12 @@ const AdminDashboard = () => {
       </div>
 
       <div className="mt-8">
-        <Tabs defaultValue="doctors" className="w-full">
+        <Tabs defaultValue="users" className="w-full">
           <TabsList>
+            <TabsTrigger value="users" className="flex items-center gap-2">
+              <Users className="h-4 w-4" />
+              User Management
+            </TabsTrigger>
             <TabsTrigger value="doctors" className="flex items-center gap-2">
               <UserPlus className="h-4 w-4" />
               Doctors Management
@@ -217,27 +194,22 @@ const AdminDashboard = () => {
               Pending Requests
             </TabsTrigger>
           </TabsList>
+
+          <TabsContent value="users">
+            <Card>
+              <CardHeader>
+                <CardTitle>User Management</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <UserManagementTable />
+              </CardContent>
+            </Card>
+          </TabsContent>
+
           <TabsContent value="doctors">
             <Card>
               <CardHeader>
-                <div className="flex items-center justify-between">
-                  <CardTitle>Registered Doctors</CardTitle>
-                  <div className="flex items-center gap-4">
-                    <div className="relative">
-                      <Search className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
-                      <Input
-                        placeholder="Search doctors..."
-                        value={searchTerm}
-                        onChange={(e) => setSearchTerm(e.target.value)}
-                        className="pl-8"
-                      />
-                    </div>
-                    <Button variant="outline" onClick={handleExportData}>
-                      <Download className="mr-2 h-4 w-4" />
-                      Export
-                    </Button>
-                  </div>
-                </div>
+                <CardTitle>Registered Doctors</CardTitle>
               </CardHeader>
               <CardContent>
                 <Table>
@@ -279,23 +251,11 @@ const AdminDashboard = () => {
               </CardContent>
             </Card>
           </TabsContent>
+
           <TabsContent value="requests">
             <Card>
               <CardHeader>
-                <div className="flex items-center justify-between">
-                  <CardTitle>System Requests</CardTitle>
-                  <Select defaultValue="all">
-                    <SelectTrigger className="w-[180px]">
-                      <SelectValue placeholder="Filter by status" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="all">All Requests</SelectItem>
-                      <SelectItem value="pending">Pending</SelectItem>
-                      <SelectItem value="approved">Approved</SelectItem>
-                      <SelectItem value="rejected">Rejected</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
+                <CardTitle>System Requests</CardTitle>
               </CardHeader>
               <CardContent>
                 <Table>
