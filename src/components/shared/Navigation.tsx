@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { Button } from "@/components/ui/button";
+import { useAuth } from "@/contexts/AuthContext";
 import {
   Users,
   FileText,
@@ -19,10 +20,10 @@ interface NavigationProps {
 
 export const Navigation = ({ role }: NavigationProps) => {
   const navigate = useNavigate();
+  const { logout, isAuthenticated } = useAuth();
 
   const handleLogout = () => {
-    // In a real app, handle logout logic here
-    navigate("/login");
+    logout();
   };
 
   const getNavItems = () => {
@@ -82,7 +83,7 @@ export const Navigation = ({ role }: NavigationProps) => {
         </div>
         <div className="flex items-center gap-4">
           <ThemeToggle />
-          {role && (
+          {isAuthenticated && (
             <Button variant="outline" onClick={handleLogout}>
               <LogOut className="mr-2 h-4 w-4" />
               Logout
